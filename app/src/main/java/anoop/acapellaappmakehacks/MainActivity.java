@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         File dir = new File( Environment.getExternalStorageDirectory()+"/media/acapella");
-        dir.mkdirs();
+
 
         try{
             if(dir.mkdir()) {
@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             catch(FileNotFoundException e)
             {
                 e.printStackTrace();
+                e.getCause();
+
             }
 
 
@@ -81,12 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private boolean hasCamera() {
-        if (getPackageManager().hasSystemFeature(
-                PackageManager.FEATURE_CAMERA_FRONT)){
-            return true;
-        } else {
-            return false;
-        }
+        return getPackageManager().hasSystemFeature(
+                PackageManager.FEATURE_CAMERA_FRONT);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
